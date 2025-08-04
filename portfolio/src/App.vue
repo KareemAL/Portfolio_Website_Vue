@@ -1,23 +1,83 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+
+export type NavLink = {
+  label: string
+  path: string
+  children?: NavLink[]
+}
+
+const navLinks: NavLink[] = [
+  {
+    label: 'Projects',
+    path: '/projects',
+    children: [
+      {
+        label: '3D Projects',
+        path: '/projects/3d',
+        children: [
+          {
+            label: 'Project 1',
+            path: '/projects/3d/1',
+          },
+        ],
+      },
+      {
+        label: '3D Webwiever',
+        path: '/projects/3d_webviewer',
+      },
+    ],
+  },
+  {
+    label: 'Résumé',
+    path: '/resume',
+  },
+  {
+    label: 'Contact',
+    path: '/contact',
+  },
+]
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <v-layout>
+    <v-app-bar>
+      <template v-slot:prepend>
+        <v-btn icon @click="$router.push('/')">
+          <v-avatar size="50">
+            <v-img src="/homebutton_image2.jpg"></v-img>
+          </v-avatar>
+        </v-btn>
+      </template>
+      <v-btn v-for="navLink in navLinks" @click="$router.push(navLink.path)">
+        {{ navLink.label }}
+        <v-menu v-if="navLink.children && navLink.children.length" open-on-hover activator="parent">
+          <v-list>
+            <v-list-item v-for="navChild in navLink.children" @click="$router.push(navChild.path)">
+              <v-list-item-title>{{ navChild.label }}</v-list-item-title>
+              <v-menu
+                :open-on-focus="false"
+                activator="parent"
+                open-on-hover
+                submenu
+                v-if="navChild.children && navChild.children.length"
+              >
+                <v-list>
+                  <v-list-item
+                    v-for="navGrandchild in navChild.children"
+                    @click="$router.push(navGrandchild.path)"
+                  >
+                    <v-list-item-title>{{ navGrandchild.label }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-btn>
+    </v-app-bar>
+    <v-main><RouterView /></v-main>
+  </v-layout>
 </template>
 
 <style scoped>

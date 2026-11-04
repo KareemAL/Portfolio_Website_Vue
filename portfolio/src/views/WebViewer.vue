@@ -253,7 +253,7 @@ onUnmounted(() => {
   height: 600px; /* Fixed height for the block */
   gap: 40px;
   background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
+  border-radius: 5px;
   border: 1px solid var(--primary-accent);
   overflow: hidden;
 }

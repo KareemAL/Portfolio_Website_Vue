@@ -5,28 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b1096b1-1c80-46b7-9793-de85665b4d57" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Portfolio_Website.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Portfolio_Website_Vue.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS_loading/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/JS_loading/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS_loading/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS_loading/navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/assets/images/startup_slideout_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/assets/images/startup_slideout_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/assets/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/components/TheWelcome.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/components/WelcomeItem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/components/icons/IconCommunity.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/components/icons/IconDocumentation.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/components/icons/IconEcosystem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/components/icons/IconSupport.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/components/icons/IconTooling.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/views/WebViewer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/views/WebViewer.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portfolio/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +80,7 @@
       <workItem from="1793664024425" duration="202000" />
       <workItem from="1793664242315" duration="16371000" />
       <workItem from="1793743240637" duration="3214000" />
-      <workItem from="1793751485395" duration="1210000" />
+      <workItem from="1793751485395" duration="5438000" />
     </task>
     <servers />
   </component>

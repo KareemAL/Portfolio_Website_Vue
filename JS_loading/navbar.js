@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     const currentPage = window.location.pathname;
     const pagesWithNavbar = [
-        "/Portfolio_Website/index.html",
-        "/Portfolio_Website/projects.html",
-        "/Portfolio_Website/resume.html",
-        "/Portfolio_Website/contact.html",
-        "/Portfolio_Website/projects/3DWebViewer/3dwebviewer.html",
+        "/Portfolio_Website_Vue/index.html",
+        "/Portfolio_Website_Vue/projects.html",
+        "/Portfolio_Website_Vue/resume.html",
+        "/Portfolio_Website_Vue/contact.html",
+        "/Portfolio_Website_Vue/projects/3DWebViewer/3dwebviewer.html",
     ];
 
     console.log(window.location.pathname);
 
     if (pagesWithNavbar.includes(currentPage)) {
-        fetch("/Portfolio_Website/JS_loading/navbar.html")
+        fetch("/Portfolio_Website_Vue/JS_loading/navbar.html")
             .then((response) => response.text())
             .then((data) => {
                 const LocalNavbarContainer = document.getElementById("localNavbar-container");
@@ -40,7 +40,7 @@ function initNavbarDropdownLogic() {
             "3D Webviewer": [
                 {
                     name: "Try out Webviewer",
-                    href: "/Portfolio_Website/projects/3DWebViewer/3dwebviewer.html",
+                    href: "/Portfolio_Website_Vue/projects/3DWebViewer/3dwebviewer.html",
                 },
             ],
             Web: [

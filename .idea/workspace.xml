@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b1096b1-1c80-46b7-9793-de85665b4d57" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/assets/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/components/HeroCarousel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/components/HeroCarousel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/components/MainFooter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/components/MainFooter.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/src/views/ProjectsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/views/ProjectsView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portfolio/src/views/WebViewer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/src/views/WebViewer.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portfolio/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/vite.config.ts" afterDir="false" />
     </list>
@@ -16,7 +24,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="113" />
+    <option name="cachedIndexableFilesCount" value="115" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -57,6 +65,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Desktop\Website\Portfolio_Website_Vue\portfolio\src\views\projects\3d" />
       <recent name="E:\Desktop\Website\Portfolio_Website_Vue\portfolio\src\assets\cables" />
     </key>
   </component>
@@ -80,7 +89,7 @@
       <workItem from="1793664024425" duration="202000" />
       <workItem from="1793664242315" duration="16371000" />
       <workItem from="1793743240637" duration="3214000" />
-      <workItem from="1793751485395" duration="5438000" />
+      <workItem from="1793751485395" duration="17983000" />
     </task>
     <servers />
   </component>

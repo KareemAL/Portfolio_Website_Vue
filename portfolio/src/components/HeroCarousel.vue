@@ -249,9 +249,9 @@ onMounted(() => {
         <div class="text">
           <h1>Kareem Al-Khalily</h1>
           <div class="hero_jobs">
-            <span class="job">3D -Artist</span>
+            <span class="job">3D-Artist</span>
             <span class="separator ml-1 mr-1">|</span>
-            <span class="job">Designer</span>
+            <span class="job">Technical Artist</span>
             <span class="separator ml-1 mr-1">|</span>
             <span class="job">Developer</span>
           </div>

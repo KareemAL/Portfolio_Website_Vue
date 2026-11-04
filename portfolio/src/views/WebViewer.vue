@@ -39,7 +39,7 @@ const meshDescriptions: Record<string, { title: string, shortDescription: string
   'Intro': {
     title: 'Mesh Carousel',
     shortDescription: '⮜ Click anywhere on the box left, to view the 3D Web viewer',
-    longDescription: 'The Cables.gl 3D patch demonstrates a "Mesh Carousel" where different 3D models can be showcased in a real-time WebGL environment. Explore the synergy between creative coding and 3D art.'
+    longDescription: 'The cables.gl 3D patch demonstrates a "Mesh Carousel" where different 3D models can be showcased in a real-time WebGL environment. Explore the synergy between creative coding and 3D art.'
   }
 }
 
@@ -208,7 +208,7 @@ onUnmounted(() => {
             <h1>3D Webviewer</h1>
             <Transition name="fade" mode="out-in">
               <div :key="introClicked === 0 ? 'Intro' : currentMesh">
-                <h2>{{ currentInfo.title }}</h2>
+                <h2> <span v-if="introClicked !== 0">{{ Number(currentMesh) + 1 }}</span> {{ currentInfo.title }}</h2>
                 <p>
                   {{ currentInfo.shortDescription }}
                 </p>
@@ -217,14 +217,11 @@ onUnmounted(() => {
                 </p>
               </div>
             </Transition>
-            <p>
-              Feel free to interact with the viewer. You can rotate, zoom, and explore the models as they transition through the carousel.
+            <p class="low_importance">
+              The Webviewer is something i developed myself, using cables.gl for the purpose of this portfolio. You can rotate, zoom, and explore the models as you transition through them.
             </p>
             <div v-if="currentMesh !== 'Unknown'" class="mesh-indicator">
-              Currently viewing: <span>{{ currentMesh }}</span>
-            </div>
-            <div class="mesh-indicator">
-              Is Mobile: <span>{{ displayisMobile }}</span>
+              Cables Patch: <a href="https://cables.gl/p/xIq4Hh" >cables.gl/p/xIq4Hh</a>
             </div>
           </div>
         </div>
@@ -294,6 +291,15 @@ onUnmounted(() => {
   padding: 0;
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.text-content h2 span {
+  background-color: var(--primary-accent);
+  color: var(--bg-dark);
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-right: 10px;
+  font-weight: bold;
 }
 
 .mesh-indicator {

@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-info">
-        <p><strong>Kareem Al-Khalily</strong></p>
+        <p><strong>Kareem Gamal Al-Khalily</strong> كريم جمال الخليلي </p>
         <p><strong>Email:</strong> <a href="mailto:stuff@alkhalily.net">stuff@alkhalily.net</a></p>
         <p><strong>Occupation:</strong> <span>Studying at FH Hagenberg (start: 01.10.2025)</span></p>
         <p><span>Vienna, Austria</span></p>

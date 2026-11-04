@@ -2,46 +2,31 @@
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { RouterView, useRouter } from 'vue-router'
 import { gsap } from 'gsap'
+import { navLinks, type NavLink } from './navigation'
 
 const router = useRouter()
 const showStartup = ref(true)
+const drawer = ref(false)
 
-export type NavLink = {
-  label: string
-  path: string
-  children?: NavLink[]
+const navigateAndClose = (path: string) => {
+  router.push(path)
+  drawer.value = false
 }
 
-const navLinks: NavLink[] = [
-  {
-    label: 'Projects',
-    path: '/projects',
-    children: [
-      {
-        label: '3D Projects',
-        path: '/projects/3d',
-        children: [
-          {
-            label: 'Project 1',
-            path: '/projects/3d/1',
-          },
-        ],
-      },
-      {
-        label: '3D Webwiever',
-        path: '/projects/3d_webviewer',
-      },
-    ],
-  },
-  {
-    label: 'Résumé',
-    path: '/resume',
-  },
-  {
-    label: 'Contact',
-    path: '/contact',
-  },
-]
+const getGroupedChildren = (children?: NavLink[]) => {
+  if (!children) return {}
+  const groups: Record<string, NavLink[]> = {}
+  children.forEach((child) => {
+    const col = child.column || 'General'
+    if (!groups[col]) groups[col] = []
+    groups[col].push(child)
+  })
+  return groups
+}
+
+const hasColumns = (link: NavLink) => {
+  return link.children?.some((child) => child.column)
+}
 
 const headerVisible = ref(true)
 let lastScrollY = 0
@@ -124,12 +109,12 @@ onUnmounted(() => {
         </v-btn>
       </template>
 
-      <v-toolbar-items class="hidden-sm-and-down ml-4">
+      <v-toolbar-items class="hidden-sm-and-down align-center" style="margin-left: 0;">
         <template v-for="navLink in navLinks" :key="navLink.label">
           <v-btn
             variant="text"
             class="nav-link-btn"
-            @click="navLink.children?.length ? null : router.push(navLink.path)"
+            @click="router.push(navLink.path)"
           >
             {{ navLink.label }}
             <v-menu v-if="navLink.children?.length" open-on-hover activator="parent">
@@ -137,7 +122,7 @@ onUnmounted(() => {
                 <v-list-item
                   v-for="navChild in navLink.children"
                   :key="navChild.label"
-                  @click="navChild.children?.length ? null : router.push(navChild.path)"
+                  @click.stop="router.push(navChild.path)"
                   class="dropdown-item"
                 >
                   <v-list-item-title>{{ navChild.label }}</v-list-item-title>
@@ -147,11 +132,26 @@ onUnmounted(() => {
                     open-on-hover
                     submenu
                   >
-                    <v-list bg-color="#333">
+                    <div v-if="hasColumns(navChild)" class="columnar-menu">
+                      <div v-for="(group, colName) in getGroupedChildren(navChild.children)" :key="colName" class="dropdown-column">
+                        <div class="column-header">{{ colName }}</div>
+                        <v-list bg-color="transparent" class="pa-0">
+                          <v-list-item
+                            v-for="item in group"
+                            :key="item.label"
+                            @click.stop="router.push(item.path)"
+                            class="dropdown-item"
+                          >
+                            <v-list-item-title>{{ item.label }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </div>
+                    </div>
+                    <v-list v-else bg-color="#333">
                       <v-list-item
                         v-for="navGrandchild in navChild.children"
                         :key="navGrandchild.label"
-                        @click="router.push(navGrandchild.path)"
+                        @click.stop="router.push(navGrandchild.path)"
                         class="dropdown-item"
                       >
                         <v-list-item-title>{{ navGrandchild.label }}</v-list-item-title>
@@ -165,9 +165,63 @@ onUnmounted(() => {
         </template>
       </v-toolbar-items>
 
-      <v-spacer class="hidden-md-and-up"></v-spacer>
-      <v-app-bar-nav-icon class="hidden-md-and-up"></v-app-bar-nav-icon>
+      <v-spacer></v-spacer>
+      <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
+
+    <v-navigation-drawer
+      v-model="drawer"
+      location="right"
+      temporary
+      color="#333"
+      theme="dark"
+      width="300"
+    >
+      <v-list bg-color="#333">
+        <template v-for="link in navLinks" :key="link.label">
+          <v-list-group v-if="link.children?.length" :value="link.label">
+            <template v-slot:activator="{ props }">
+              <v-list-item v-bind="props" class="drawer-item">
+                <v-list-item-title @click.stop="navigateAndClose(link.path)">
+                  {{ link.label }}
+                </v-list-item-title>
+              </v-list-item>
+            </template>
+
+            <template v-for="child in link.children" :key="child.label">
+              <v-list-group v-if="child.children?.length" :value="child.label">
+                <template v-slot:activator="{ props }">
+                  <v-list-item v-bind="props" class="drawer-item pl-6">
+                    <v-list-item-title @click.stop="navigateAndClose(child.path)">
+                      {{ child.label }}
+                    </v-list-item-title>
+                  </v-list-item>
+                </template>
+                <v-list-item
+                  v-for="grandchild in child.children"
+                  :key="grandchild.label"
+                  :title="grandchild.label"
+                  @click="navigateAndClose(grandchild.path)"
+                  class="drawer-item pl-10"
+                ></v-list-item>
+              </v-list-group>
+              <v-list-item
+                v-else
+                :title="child.label"
+                @click="navigateAndClose(child.path)"
+                class="drawer-item pl-6"
+              ></v-list-item>
+            </template>
+          </v-list-group>
+          <v-list-item
+            v-else
+            :title="link.label"
+            @click="navigateAndClose(link.path)"
+            class="drawer-item"
+          ></v-list-item>
+        </template>
+      </v-list>
+    </v-navigation-drawer>
 
     <v-main>
       <RouterView />
@@ -175,7 +229,7 @@ onUnmounted(() => {
   </v-app>
 </template>
 
-<style>
+<style scoped>
 .profile-btn {
   width: 60px !important;
   height: 60px !important;
@@ -194,22 +248,98 @@ onUnmounted(() => {
   text-transform: none !important;
   letter-spacing: normal !important;
   padding: 0 20px !important;
-  height: 100% !important;
+  height: 60px !important;
+  margin: 0 5px !important;
   transition: all 0.3s ease !important;
   border: 7px solid transparent !important;
+  border-radius: 4px !important;
 }
 .nav-link-btn:hover {
   color: var(--primary-accent) !important;
   border: 1px solid white !important;
   background-color: var(--bg-dark) !important;
 }
+.nav-link-btn:hover :deep(.v-btn__content) {
+  color: var(--primary-accent) !important;
+}
+.nav-link-btn:hover :deep(.v-btn__overlay),
+.nav-link-btn:focus :deep(.v-btn__overlay),
+.nav-link-btn:active :deep(.v-btn__overlay),
+.nav-link-btn[class*="--active"] :deep(.v-btn__overlay) {
+  opacity: 0 !important;
+}
 .dropdown-item {
   color: white !important;
   transition: all 0.2s ease;
+  margin: 5px 0 !important;
 }
 .dropdown-item:hover {
   background-color: var(--primary-accent) !important;
   color: #111 !important;
+  border-radius: 2px !important;
+}
+.dropdown-item:hover :deep(.v-list-item-title) {
+  color: #111 !important;
+}
+.dropdown-item:hover :deep(.v-list-item__overlay),
+.dropdown-item:focus :deep(.v-list-item__overlay),
+.dropdown-item:active :deep(.v-list-item__overlay),
+.dropdown-item[class*="--active"] :deep(.v-list-item__overlay) {
+  opacity: 0 !important;
+}
+.drawer-item {
+  color: white !important;
+  transition: all 0.2s ease;
+}
+.drawer-item:hover {
+  background-color: var(--primary-accent) !important;
+  color: #111 !important;
+  border-radius: 2px !important;
+}
+.drawer-item:hover :deep(.v-list-item-title) {
+  color: #111 !important;
+}
+.drawer-item:hover :deep(.v-list-item__overlay),
+.drawer-item:focus :deep(.v-list-item__overlay),
+.drawer-item:active :deep(.v-list-item__overlay),
+.drawer-item[class*="--active"] :deep(.v-list-item__overlay) {
+  opacity: 0 !important;
+}
+
+/* Highlight expanded groups in the drawer */
+:deep(.v-list-group--open) {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+:deep(.v-list-group--open) > :deep(.v-list-group__items) {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+.columnar-menu {
+  display: flex;
+  flex-direction: row;
+  background-color: #333;
+  padding: 10px 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.dropdown-column {
+  min-width: 180px;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+}
+.dropdown-column:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.column-header {
+  color: var(--primary-accent);
+  font-weight: bold;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(183, 135, 87, 0.3);
+  letter-spacing: 1px;
 }
 
 .starup_slideout {

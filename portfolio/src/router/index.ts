@@ -4,6 +4,7 @@ import ProjectsView from '../views/ProjectsView.vue'
 import ResumeView from '../views/ResumeView.vue'
 import ContactView from '../views/ContactView.vue'
 import WebViewer from '../views/WebViewer.vue'
+import Jensen from '../views/projects/3d/Jensen.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,19 @@ const router = createRouter({
     {
       path: '/projects',
       name: 'projects',
+      component: ProjectsView,
+    },
+    {
+      path: '/projects/3d/pyke',
+      name: 'pyke',
+      component: Jensen,
+    },
+    {
+      path: '/projects/:category',
+      component: ProjectsView,
+    },
+    {
+      path: '/projects/:category/:id',
       component: ProjectsView,
     },
     {

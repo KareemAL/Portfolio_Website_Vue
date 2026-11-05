@@ -5,6 +5,7 @@ import ResumeView from '../views/ResumeView.vue'
 import ContactView from '../views/ContactView.vue'
 import WebViewer from '../views/WebViewer.vue'
 import Jensen from '../views/projects/3d/Jensen.vue'
+import MatBallsView from '../views/projects/techart/MatBallsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,9 +21,14 @@ const router = createRouter({
       component: ProjectsView,
     },
     {
-      path: '/projects/3d/pyke',
-      name: 'pyke',
+      path: '/projects/3d/jensen',
+      name: 'jensen',
       component: Jensen,
+    },
+    {
+      path: '/projects/techart/matballs',
+      name: 'matballs',
+      component: MatBallsView,
     },
     {
       path: '/projects/:category',

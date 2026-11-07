@@ -5,6 +5,7 @@ import ResumeView from '../views/ResumeView.vue'
 import ContactView from '../views/ContactView.vue'
 import WebViewer from '../views/WebViewer.vue'
 import Jensen from '../views/projects/3d/Jensen.vue'
+import InkHeist from '../views/projects/games/InkHeist.vue'
 import MatBallsView from '../views/projects/techart/MatBallsView.vue'
 
 const router = createRouter({
@@ -29,6 +30,11 @@ const router = createRouter({
       path: '/projects/techart/matballs',
       name: 'matballs',
       component: MatBallsView,
+    },
+    {
+      path: '/projects/games/inkheist',
+      name: 'inkheist',
+      component: InkHeist,
     },
     {
       path: '/projects/:category',
